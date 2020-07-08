@@ -1,0 +1,108 @@
+{% extends "staffhome.html" %}
+
+{% block title %}
+    Approvals
+{% endblock %}
+
+{% block css %}
+<link href="static/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<div>
+  <h1>Approvals</h1>
+  <script type="text/javascript"> 
+    var myDate = new Date(); 
+    var myDay = myDate.getDay(); 
+    
+    // Array of days. 
+    var weekday = ['Sunday', 'Monday', 'Tuesday', 
+        'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+    ]; 
+    document.write("Today is : " + weekday[myDay]); 
+    document.write("<br/>"); 
+    
+    // get hour value. 
+    var hours = myDate.getHours(); 
+    var ampm = hours >= 12 ? 'PM' : 'AM'; 
+    hours = hours % 12; 
+    hours = hours ? hours : 12; 
+    var minutes = myDate.getMinutes(); 
+    minutes = minutes < 10 ? '0' + minutes : minutes; 
+    var myTime = hours + " " + ampm + " : " + minutes +  
+        " : " + myDate.getMilliseconds(); 
+    document.write("\tCurrent time is : " + myTime); 
+  </script>
+</div>
+<div>
+    <h4>
+        Hello {{ name }}!
+    </h4>
+</div>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/staffhome">Periodontics Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/appresto">Restorative Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/appendo">Endodontics Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/apppedo">Pediatrics Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/appprostho">Prosthodontics Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/appos">Oral Surgery Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/appod">Oral Diagnosis Department</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Pendings from the Prosthodontics Department</h5>
+        <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Chair</th>
+                  <th>Clinician's ID</th>
+                  <th>Patient's Name</th>
+                  <th>Case</th>
+                  <th>Status</th>
+                  <th>Open</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in prosthodb: %}
+              <tr>
+                  <form action="/appprostho" method="post">
+                    <td><input name="chair" type="text" readonly class="form-control-plaintext" id="studentid" value= {{ row[0] }} ></td>
+                    <td><input name="studentid" type="text" readonly class="form-control-plaintext" id="studentid" value= {{ row[1] }} ></td>
+                    <td>{{ row[2] }}</td>
+                    <td>
+                        {{ row[5] }}
+                    </td>
+                    {% if row[10] == 3: %}
+                    <td>Approved</td>
+                    {% elif row[10] == 2: %}
+                    <td>Pending Approval</td>
+                    {% elif row[10] == 1: %}
+                    <td>Denied</td>
+                    {% endif %}
+                    <td> 
+                        <input name="button" class="btn btn-primary" type="submit" value="Prosthodontics">
+                    </td>
+                </form>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>   
+  </div>
+</div>               
+{% endblock %}

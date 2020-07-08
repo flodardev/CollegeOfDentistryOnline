@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block css %}
+<link href="static/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+{% if alert == 'registered' %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Registered!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+{% if alert == 'sent' %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Requested! Please wait for us to contact you.</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<div class="card-group" id="login">
+    <div class="card">
+      <img src="/static/faculty.jpg" class="card-img-top" alt="Dental Faculty">
+      <div class="card-body">
+        <h5 class="card-title">Faculty & Staff</h5>
+        <p class="card-text">For AUP COD's beloved faculty and staff.</p>
+        <form action="/loginstaff" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus="" class="form-control" name="facultyidnumber" placeholder="ID Number" type="number">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="facultypassword" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+    </div>
+    </div>
+    <div class="card">
+      <img src="/static/student.jpg" class="card-img-top" alt="Dental Student">
+      <div class="card-body">
+        <h5 class="card-title">Student</h5>
+        <p class="card-text">For AUP COD's beloved students.</p>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus="" class="form-control" name="studentidnumber" placeholder="ID Number" type="number">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="studentpassword" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+        <img src="/static/pain.jpg" class="card-img-top" alt="Patient">
+        <div class="card-body">
+            <h5 class="card-title">Services</h5>
+            <p class="card-text">Are you looking for dental services? Toothache? Cleaning? Fillings? Prosthesis? For any dental concerns, you are welcomed! Please click the link below to submit a request.</p>
+            <a class="btn btn-primary" href="/patientrequest" role="button">Request</a>
+        </div>
+    </div>
+  </div>
+  {% endblock %}

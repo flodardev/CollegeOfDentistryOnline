@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Requets
+{% endblock %}
+
+{% block css %}
+<link href="static/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<div>
+  <h1>Requests</h1>
+  <script type="text/javascript"> 
+    var myDate = new Date(); 
+    var myDay = myDate.getDay(); 
+    
+    // Array of days. 
+    var weekday = ['Sunday', 'Monday', 'Tuesday', 
+        'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+    ]; 
+    document.write("Today is : " + weekday[myDay]); 
+    document.write("<br/>"); 
+    
+    // get hour value. 
+    var hours = myDate.getHours(); 
+    var ampm = hours >= 12 ? 'PM' : 'AM'; 
+    hours = hours % 12; 
+    hours = hours ? hours : 12; 
+    var minutes = myDate.getMinutes(); 
+    minutes = minutes < 10 ? '0' + minutes : minutes; 
+    var myTime = hours + " " + ampm + " : " + minutes +  
+        " : " + myDate.getMilliseconds(); 
+    document.write("\tCurrent time is : " + myTime); 
+  </script>
+</div>
+<div class="card text-left">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link active" href="/request">Pending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/seerequest">Accepted</a>
+        </li>
+      </ul>
+    </div>
+    <h5 class="card-header">Public Requests</h5>
+  <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Number</th>
+                  <th>Concern</th>
+                  <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in requestdb: %}
+              <tr>
+                  <form action="/request" method="post">
+                    <td>{{ row[0] }}</td>
+                    <td><input name="number" type="text" readonly class="form-control-plaintext" id="email" value= {{ row[1] }} ></td>
+                    <td><input name="concern" type="text" readonly class="form-control-plaintext" id="concern" value= {{ row[4] }} ></td>
+                    <td> 
+                      {% if row[5] == 1 %}
+                      <button class="btn btn-primary" type="submit" disabled>Taken</button>
+                      {% elif row[5] == 0 %}
+                      <button class="btn btn-primary" type="submit">Open</button>
+                      {% endif %}
+                    </td>
+                </form>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>   
+  </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reservations
+{% endblock %}
+
+{% block css %}
+<link href="static/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<h1>Reservations</h1>
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4">
+      <div class="card h-100">
+        <a href="/periodontics"><img src="/static/reservations/perio.jpg" class="card-img-top" alt="Periodontics"></a>
+        <div class="card-body">
+          <a href="/periodontics"><h5 class="card-title">Periodontics Department</h5></a>
+          <p class="card-text">Chairs available: {{ periochair }}/40</p>
+          <p class="card-text">Clinical Consultant On Duty: </p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <a href="/restorativeam1"><img src="/static/reservations/resto.jpg" class="card-img-top" alt="Restorative"></a>
+        <div class="card-body">
+          <a href="/restorativeam1"><h5 class="card-title">Restorative Dentistry Department</h5></a>
+          <p class="card-text">Chairs available: {{ restochair }}/40</p>
+          <p class="card-text">Clinical Consultant On Duty: </p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <a href="/endodonticsam1"><img src="/static/reservations/endo.jpg" class="card-img-top" alt="Endodontics"></a>
+        <div class="card-body">
+            <a href="/endodonticsam1"><h5 class="card-title">Endodontics Department</h5></a>
+          <p class="card-text">Chairs available: {{ endochair }}/40</p>
+          <p class="card-text">Clinical Consultant On Duty: </p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <a href="/pediatricsam1"><img src="/static/reservations/ped.jpg" class="card-img-top" alt="Pediatrics"></a>
+        <div class="card-body">
+            <a href="/pediatricsam1"><h5 class="card-title">Pediatrics Department</h5></a>
+            <p class="card-text">Chairs available: {{ pedochair }}/24</p>
+            <p class="card-text">Clinical Consultant On Duty: </p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card h-100">
+          <a href="/prosthoam1"><img src="/static/reservations/prostho.jpg" class="card-img-top" alt="Prosthodontics"></a>
+          <div class="card-body">
+            <a href="/prosthoam1"><h5 class="card-title">Prosthodontics Department</h5></a>
+            <p class="card-text">Chairs available: {{ prosthochair }}/52</p>
+            <p class="card-text">Clinical Consultant On Duty: </p>
+            </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+            <a href="osam1"><img src="/static/reservations/os.jpg" class="card-img-top" alt="OralSurgery"></a>
+            <div class="card-body">
+            <a href="osam1"><h5 class="card-title">Oral Surgery Department</h5></a>
+            <p class="card-text">Chairs available: {{ oschair }}/24</p>
+            <p class="card-text">Clinical Consultant On Duty: </p>
+            </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+            <a href="odam1"><img src="/static/reservations/od.jpg" class="card-img-top" alt="OralDiagnosis"></a>
+            <div class="card-body">
+                <a href="odam1"><h5 class="card-title">Oral Diagnosis Department</h5></a>
+                <p class="card-text">Chairs available: {{ odchair }}/24</p>
+                <p class="card-text">Clinical Consultant On Duty: </p>
+            </div>
+        </div>
+  </div>
+  {% endblock %}

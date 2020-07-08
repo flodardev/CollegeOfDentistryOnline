@@ -1,0 +1,391 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reservations
+{% endblock %}
+<!--1:00p.m to 3:00p.m-->
+{% block css %}
+<style>
+  body
+  {
+    background-color: thistle;
+  }
+  #button
+  {
+    /* center contents */
+    text-align: center;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<h1>Endodontics Department</h1>
+<script type="text/javascript"> 
+  var myDate = new Date(); 
+  var myDay = myDate.getDay(); 
+  
+  // Array of days. 
+  var weekday = ['Sunday', 'Monday', 'Tuesday', 
+      'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+  ]; 
+  document.write("Today is : " + weekday[myDay]); 
+  document.write("<br/>"); 
+  
+  // get hour value. 
+  var hours = myDate.getHours(); 
+  var ampm = hours >= 12 ? 'PM' : 'AM'; 
+  hours = hours % 12; 
+  hours = hours ? hours : 12; 
+  var minutes = myDate.getMinutes(); 
+  minutes = minutes < 10 ? '0' + minutes : minutes; 
+  var myTime = hours + " " + ampm + " : " + minutes +  
+      " : " + myDate.getMilliseconds(); 
+  document.write("\tCurrent time is : " + myTime); 
+</script> 
+<div>
+    <label for="timelist"><h4>Time:</h4></label>
+    <select name="timelist" id="timelist" onchange="location = this.value;">
+      <option disabled>AM</option>
+      <option value="/endodonticsam1">8:00a.m - 10:00a.m</option>
+      <option value="/endodonticsam2">10:00a.m - 12:00p.m</option>
+      <option disabled>PM</option>
+      <option value="/endodonticspm1" selected>1:00p.m - 3:00p.m</option>
+      <option value="/endodonticspm2">3:00p.m - 5:00p.m</option>
+    </select>
+  </div>
+<div id="cards">
+  <div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4">
+      <form action="/endodonticsam1" method="post">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+              <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="1">
+          </div>
+          <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair1name }} </p>
+            {% if chair1status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair1status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair1status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair1 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %}     
+          </div>
+        </div>  
+      </form>
+    </div>
+
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="2">
+          </div>
+          <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair2name }} </p>
+            {% if chair2status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair2status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair2status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair2 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">       
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="3">
+          </div>
+          <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair3name }} </p>
+            {% if chair3status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair3status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair3status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair3 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %}  
+          </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="4">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair4name }} </p>
+            {% if chair4status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair4status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair4status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair4 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %}
+        </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="5">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair5name }} </p>
+            {% if chair5status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair5status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair5status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair5 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %} 
+        </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="6">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair6name }} </p>
+            {% if chair6status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair6status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair6status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair6 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %} 
+        </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="7">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair7name }} </p>
+            {% if chair7status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair7status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair7status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair7 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %} 
+        </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="8">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair8name }} </p>
+            {% if chair8status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair8status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair8status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair8 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %} 
+        </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="9">
+          </div>
+          <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair9name }} </p>
+            {% if chair9status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair9status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair9status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair9 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %}   
+          </div>
+        </div>
+      </div>
+    </form>
+    <form action="/endodonticsam1" method="post">
+        <div class="col mb-4">
+        <div class="card h-75">
+          <div class="card-body">
+            <h4>Chair</h4>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value="10">
+        </div>
+        <div class="card-body">
+            <h4>Time: </h4>
+            <input name="time" type="text" readonly class="form-control-plaintext" id="time" value="1:00p.m - 3:00p.m">
+          </div>
+          <div class="card-body">
+            <p class="card-text">Clinician: {{ chair10name }} </p>
+            {% if chair10status == 3 %}
+            <p class="card-text">Status: Approved</p>
+            {% elif chair10status == 2 %}
+            <p class="card-text">Status: Pending Approval</p>
+            {% elif chair10status == 1 %}
+            <p class="card-text">Status: Denied</p>
+            {% else %}
+            <p class="card-text">Status: Not Reserved</p>
+            {% endif %}
+          </div>
+          <div class="card-body" id="button">
+            {% if chair10 == True: %}
+            <input class="btn btn-primary" disabled type="submit" value="Reserved">
+            {% else: %} 
+            <input class="btn btn-primary" type="submit" value="Reserve">  
+            {% endif %}
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

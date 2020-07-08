@@ -1,0 +1,73 @@
+{% extends "staffhome.html" %}
+
+{% block title %}
+    Approval
+{% endblock %}
+
+{% block css %}
+<style>
+  body
+  {
+    background-color: whitesmoke;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+{% for row in restodb: %}
+<div>
+    <button onClick="history.go(-1); " type="button" class="btn btn-primary btn-lg btn-block">Back</button>
+    <h1>Restorative Department</h1>
+    <form action="/approveresto" method="post">
+        <div class="form-group">
+        <label for="studentid" class="font-weight-bold">Student ID:</label>
+        <input name="studentid" type="text" readonly class="form-control-plaintext" id="studentid" value= {{ row[1] }} >
+      </div>
+      <div class="form-group">
+        <label for="studentname" class="font-weight-bold">Student Name:</label>
+        {{ studentname }}
+      </div>
+      <div class="form-group">
+        <label for="chairtime" class="font-weight-bold">Time:</label>
+        <input name="chairtime" type="text" readonly class="form-control-plaintext" id="chair" value= {{ row[11] }} >
+      </div>
+        <div class="form-group">
+            <label for="chair" class="font-weight-bold">Chair:</label>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value= {{ row[0] }} >
+          </div>
+          <div class="form-group">
+            <label for="patientname" class="font-weight-bold">Patient's Name:</label>
+            <p>{{ row[2] }}</p>
+          </div>
+          <div class="form-group">
+            <label for="patientage" class="font-weight-bold">Patient's Age:</label>
+            <p>{{ row[3] }}</p>
+          <label for="patientcondition" class="font-weight-bold">Medical Conditions:</label>
+          <div class="form-group">
+            <p> {{ row[4] }} </p>
+          </div>
+          <div class="form-group">
+            <label for="patientcase" class="font-weight-bold">Case Diagnosis:</label>
+            <p> {{ row[5] }} </p>
+        </div>
+            <label for="patientcc" class="font-weight-bold">Chief Complaint:</label>
+        <div class="form-group">
+          <p> {{ row[6] }} </p>
+        </div>
+            <label for="patienthpi" class="font-weight-bold">History of Present Illness:</label>
+        <div class="form-group">
+          <p> {{ row[7] }} </p>
+        </div>
+            <label for="treatmentplan" class="font-weight-bold">Treatment Plan:</label>
+        <div class="form-group">
+          <p> {{ row[8] }} </p>
+        </div>
+        <label for="stockroom" class="font-weight-bold">Stockroom request:</label>
+        <div class="form-group">
+          <p> {{ row[9] }} </p>
+        </div>
+          <input name="button" class="btn btn-primary" type="submit" value="Approve">
+          <input name="button" class="btn btn-primary" type="submit" value="Deny">
+      </form>
+{% endfor %}
+{% endblock %}

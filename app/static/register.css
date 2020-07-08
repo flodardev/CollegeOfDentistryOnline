@@ -1,0 +1,10 @@
+body {
+    background-image: url("/static/codblurred.png");
+    background-repeat: no-repeat;
+    background-size: 100% 150%;
+}
+
+#register {
+    margin-top: 100px;
+    padding: 15px;
+}

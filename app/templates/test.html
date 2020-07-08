@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reservations
+{% endblock %}
+
+{% block css %}
+<style>
+  body
+  {
+    background-color: thistle;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<div>
+    <button onClick="history.go(-1); " type="button" class="btn btn-primary btn-lg btn-block">Back</button>
+    <h1>Periodontics Department</h1>
+    <form action="/perioreserve" method="post">
+        <div class="form-group">
+            <label for="chair">Chair:</label>
+            <input name="chair" type="text" readonly class="form-control-plaintext" id="chair" value= {{ chairnumber }} >
+          </div>
+          <div class="form-group">
+            <label for="patientname">Patient's Name:</label>
+            <input name="patientname" type="text" class="form-control" id="patientname" placeholder="Patient">
+          </div>
+          <div class="form-group">
+            <label for="patientage">Patient's Age:</label>
+            <select name="patientage" class="form-control" id="patientage">
+              {% for i in age: %}
+              <option>{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <label for="patientcondition">Medical Conditions:</label>
+          <div class="form-group">
+            <textarea name="patientcondition" class="form-control" id="patientcondition" rows="5" cols="40" placeholder="Please be descriptive"></textarea>
+          </div>
+        </form>
+        <div class="form-group">
+            <label for="patientcase">Case Diagnosis:</label>
+            <input name="patientcase" type="text" class="form-control" id="patientcase" placeholder="Diagnosis">
+        </div>
+            <label for="patientcc">Chief Complaint:</label>
+        <div class="form-group">
+              <textarea name="patientcc" class="form-control" id="patientcc" rows="5" cols="40" placeholder="Please be descriptive"></textarea>
+        </div>
+            <label for="patienthpi">History of Present Illness:</label>
+        <div class="form-group">
+              <textarea name="patienthpi" class="form-control" id="patienthpi" rows="5" cols="40" placeholder="Please be descriptive"></textarea>
+        </div>
+            <label for="treatmentplan">Treatment Plan:</label>
+        <div class="form-group">
+              <textarea name="treatmentplan" class="form-control" id="treatmentplan" rows="5" cols="40" placeholder="Please be descriptive"></textarea>
+        </div>
+        <label for="stockroom">Stockroom request:</label>
+        <div class="form-group">
+              <textarea name="stockroom" class="form-control" id="stockroom" rows="5" cols="40" placeholder="Please be descriptive"></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Reserve">
+    </form>
+</div>
+{% endblock %}
